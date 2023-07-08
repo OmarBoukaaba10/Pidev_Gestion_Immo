@@ -6,9 +6,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin("*")
 @RestController
 @AllArgsConstructor
+@RequestMapping("/profil")
 public class ProfilController {
     IProfilService profilService;
     @GetMapping("/afficherProfils")
@@ -23,6 +24,7 @@ public class ProfilController {
 
     @PutMapping("/modifierProfil")
     Profil modiferProfil (@RequestBody Profil e){
+        e.setAncienPassword(e.getNewPassword());
         return profilService.updateProfil(e);
     }
 
@@ -30,13 +32,20 @@ public class ProfilController {
     Profil retrieveProfil (@PathVariable Integer idProfil){
         return profilService.retrieveProfil(idProfil);
     }
+    @GetMapping("/getProfilByEmail/{email}")
+    Profil getProfilByEmail (@PathVariable String email){
+        return profilService.getProfilByEmail(email);
+    }
 
     @PostMapping("/ArchiverProfil/{idProfil}")
     void deleteProfil(@PathVariable Integer idProfil){
         profilService.archiveProfil(idProfil);
     }
 
-
+    @PostMapping("/send-email")
+    public void sendEmail(@RequestBody Profil e) {
+        profilService.sendNewPasswordEmail(e);
+    }
 
 
 }

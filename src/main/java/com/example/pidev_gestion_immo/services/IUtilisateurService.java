@@ -14,4 +14,5 @@ public interface IUtilisateurService {
     Utilisateur retrieveUser (Integer idUser);
 
     void archiveUser(Integer idUser);
+    void activerUser(Integer idUser);
 }

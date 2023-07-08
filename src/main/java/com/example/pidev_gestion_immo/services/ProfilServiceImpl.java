@@ -10,6 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ProfilServiceImpl implements IProfilService{
     ProfilRepository profilRepository;
+    private final EmailService emailService;
     @Override
     public List<Profil> retrieveAllProfils() {
         return profilRepository.findAll();
@@ -31,13 +32,27 @@ public class ProfilServiceImpl implements IProfilService{
     }
 
     @Override
+    public Profil getProfilByEmail(String email) {
+        return profilRepository.getProfilByEmail(email);
+    }
+
+    @Override
     public void archiveProfil(Integer idProfil) {
         Profil p;
        p= profilRepository.findById(idProfil).orElse(null);
         if (p!=null){
-            p.setArchived(true);
+            p.setArchived(false);
         }
         profilRepository.save(p);
 
+    }
+    @Override
+    public void sendNewPasswordEmail(Profil p) {
+        Profil profil = profilRepository.getProfilByEmail(p.getEmail());
+        if (profil != null) {
+            String subject = "New Password";
+            String body = "Your new password is: " + p.getNewPassword();
+            emailService.sendEmail(p.getEmail(), subject, body);
+        }
     }
 }

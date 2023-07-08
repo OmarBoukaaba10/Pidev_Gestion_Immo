@@ -7,9 +7,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin("*")
 @RestController
 @AllArgsConstructor
+@RequestMapping("/user")
 public class UtilisateurController {
     IUtilisateurService utilisateurService;
 
@@ -36,6 +37,11 @@ public class UtilisateurController {
     @PostMapping("/ArchiverUser/{idUser}")
     void deleteUser(@PathVariable Integer idUser){
         utilisateurService.archiveUser(idUser);
+    }
+
+    @PostMapping("/ActiverUser/{idUser}")
+    void activerUser(@PathVariable Integer idUser){
+        utilisateurService.activerUser(idUser);
     }
 
 

@@ -21,7 +21,8 @@ public class Profil implements Serializable {
     String ancienPassword;
     String newPassword;
     Integer numTel;
-    Boolean archived ;
+
+    Boolean archived =true;
 
     @OneToOne(mappedBy = "profil")
     Utilisateur utilisateur;

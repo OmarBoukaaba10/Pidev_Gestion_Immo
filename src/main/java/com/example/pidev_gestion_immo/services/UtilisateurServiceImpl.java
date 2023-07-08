@@ -20,7 +20,7 @@ public class UtilisateurServiceImpl implements IUtilisateurService{
 
     @Override
     public Utilisateur addUser(Utilisateur e) {
-        return utilisateurRepository.save(e);
+        return  utilisateurRepository.save(e);
     }
 
     @Override
@@ -38,9 +38,24 @@ public class UtilisateurServiceImpl implements IUtilisateurService{
         Utilisateur u;
         u= utilisateurRepository.findById(idUser).orElse(null);
         if (u!=null){
-            u.getProfil().setArchived(true);
+           Profil p;
+           p= profilRepository.getProfilByEmail(u.getLogin());
+            p.setArchived(false);
+            profilRepository.save(p);
         }
-        utilisateurRepository.save(u);
+
+
+    }
+    public void activerUser(Integer idUser) {
+        Utilisateur u;
+        u= utilisateurRepository.findById(idUser).orElse(null);
+        if (u!=null){
+            Profil p;
+            p= profilRepository.getProfilByEmail(u.getLogin());
+            p.setArchived(true);
+            profilRepository.save(p);
+        }
+
 
     }
 }

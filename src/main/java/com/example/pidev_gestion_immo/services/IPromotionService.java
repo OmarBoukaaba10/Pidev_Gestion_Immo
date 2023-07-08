@@ -14,5 +14,6 @@ public interface IPromotionService {
     Promotion retrievePromotion(Integer idPromotion);
 
     void archivePromotion(Integer idPromotion);
+    void assignAnnoncetToPromotion (Integer idPromotion, Integer idAnnonce) ;
 
 }

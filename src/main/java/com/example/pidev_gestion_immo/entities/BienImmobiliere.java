@@ -1,5 +1,6 @@
 package com.example.pidev_gestion_immo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ import java.io.Serializable;
 @ToString
 public class BienImmobiliere implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer idBienImmo;
 
     String statut;
@@ -20,14 +22,16 @@ public class BienImmobiliere implements Serializable {
     String localisation;
     String description;
     float prix;
-    float superficie;
+    float superficiesuperficie;
     @Enumerated(EnumType.STRING)
-    NatureBienImmo natuteImmo;
+    NatureBienImmo natureBienImmo;
 
-    @OneToOne(mappedBy = "bienImmobiliere")
+    @OneToOne(mappedBy = "bienImmobiliere" ,fetch = FetchType.LAZY, optional = true)
+    @JsonIgnore
     Annonce annonce;
 
-    @OneToOne(mappedBy = "bienImmobiliere")
+    @OneToOne(mappedBy = "bienImmobiliere",fetch = FetchType.LAZY, optional = true)
+    @JsonIgnore
     Contrat contrat;
 
 }

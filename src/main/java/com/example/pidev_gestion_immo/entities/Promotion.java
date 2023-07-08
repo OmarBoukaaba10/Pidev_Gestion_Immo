@@ -16,7 +16,9 @@ import java.util.Set;
 @ToString
 public class Promotion implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer idPromo;
+    String status;
 
     @Temporal(TemporalType.DATE)
     Date dateDebut;

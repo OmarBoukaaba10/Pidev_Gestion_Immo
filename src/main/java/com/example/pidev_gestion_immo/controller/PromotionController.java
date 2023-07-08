@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @AllArgsConstructor
 public class PromotionController {
 @Autowired
@@ -34,10 +35,10 @@ public class PromotionController {
     Promotion retrievePromotion(@PathVariable Integer idPromotion) {
         return iPromotionService.retrievePromotion(idPromotion);
     }
-
-    @PostMapping("/ArchiverPromotion/{idPromotion}")
-    void deletePromotion(@PathVariable Integer idPromotion) {
+    @DeleteMapping("/deletePromotion/{idPromotion}")
+    void deleteAnnonce(@PathVariable Integer idPromotion) {
         iPromotionService.archivePromotion(idPromotion);
     }
+
 
 }

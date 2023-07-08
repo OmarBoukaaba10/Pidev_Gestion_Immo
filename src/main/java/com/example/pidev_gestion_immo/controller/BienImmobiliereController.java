@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @AllArgsConstructor
 public class BienImmobiliereController {
 @Autowired
@@ -30,14 +31,16 @@ public class BienImmobiliereController {
         return iBienImmobiliereService.updateBienImmobiliere(e);
     }
 
-    @GetMapping("/afficherUser/{idBienImmobiliere}")
+    @GetMapping("/afficherBienImmobiliere/{idBienImmobiliere}")
     BienImmobiliere retrieveBienImmobiliere(@PathVariable Integer idBienImmobiliere) {
         return iBienImmobiliereService.retrieveBienImmobiliere(idBienImmobiliere);
     }
 
-    @PostMapping("/ArchiverBienImmobiliere/{idBienImmobiliere}")
+    @DeleteMapping ("/ArchiverBienImmobiliere/{idBienImmobiliere}")
     void deleteBienImmobiliere(@PathVariable Integer idBienImmobiliere) {
         iBienImmobiliereService.archiveBienImmobiliere(idBienImmobiliere);
     }
+
+
 
 }

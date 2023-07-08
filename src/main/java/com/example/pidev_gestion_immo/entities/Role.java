@@ -2,9 +2,7 @@ package com.example.pidev_gestion_immo.entities;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -16,6 +14,7 @@ import java.util.Set;
 @ToString
 public class Role implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer idRole;
 
     String name;

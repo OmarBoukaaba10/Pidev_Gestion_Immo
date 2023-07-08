@@ -14,5 +14,9 @@ public interface IAnnonceService {
     Annonce retrieveAnnonce(Integer idAnnonce);
 
     void archiveAnnonce(Integer idAnnonce);
+   void assignBienImmotToAnnonce (Integer idBienimmo, Integer src) ;
+    void assignPromotionToAnnonce (Integer idPromo, Integer idAnnonce) ;
+    Annonce findBySrc (Integer src);
 
+    void assignImageToAnnonce(Integer id, Integer src);
 }

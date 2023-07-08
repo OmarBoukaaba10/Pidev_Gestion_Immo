@@ -35,6 +35,7 @@ public class BienImmobiliereServiceImp implements IBienImmobiliereService {
 
     @Override
     public void archiveBienImmobiliere(Integer idBienImmobiliere) {
+        bienImmobiliereRepository.deleteById(idBienImmobiliere);
 
     }
 }

@@ -2,9 +2,7 @@ package com.example.pidev_gestion_immo.entities;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -15,6 +13,7 @@ import java.io.Serializable;
 @ToString
 public class Profil implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer idProfil;
     String nom;
     String prenom;
@@ -22,6 +21,8 @@ public class Profil implements Serializable {
     String ancienPassword;
     String newPassword;
     Integer numTel;
+
+    Boolean archived =true;
 
     @OneToOne(mappedBy = "profil")
     Utilisateur utilisateur;
